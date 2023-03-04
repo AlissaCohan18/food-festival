@@ -22,8 +22,10 @@ const config = {
   },
   devServer: {
     static: {
+
       directory: __dirname,
     },
+
   },
   module: {
     rules: [
