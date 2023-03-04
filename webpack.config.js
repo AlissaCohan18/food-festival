@@ -6,7 +6,7 @@ const BundleAnalyzerPlugin =
 
 //config file isn't necessary, but want to use it to be specific w/ how webpack will function
 
-module.exports = {
+const config = {
   //The entry point is the root of the bundle and the beginning of the dependency graph, so give it the relative path to the client's code
   entry: {
     app: "./assets/js/script.js",
@@ -18,6 +18,11 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: __dirname + "/dist",
+  },
+  devServer: {
+    static: {
+      directory: __dirname
+    }
   },
   module: {
     rules: [
@@ -62,3 +67,5 @@ module.exports = {
   //provide mode we want webpack to run (default for webpack is to run in "production" mode)
   mode: "development",
 };
+
+module.exports = config;
