@@ -9,13 +9,23 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./assets/js/script.js":
-/*!*****************************!*\
-  !*** ./assets/js/script.js ***!
-  \*****************************/
+/***/ "./assets/js/domMethods.js":
+/*!*********************************!*\
+  !*** ./assets/js/domMethods.js ***!
+  \*********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n$(document).ready(function () {\n    function createEl(htmlString, attrs, ...children) {\n      if (typeof htmlString !== \"string\") {\n        throw Error(\"Argument 'htmlString' is required and must be a string\");\n      }\n  \n      const el = document.createElement(htmlString);\n  \n      if (typeof attrs === \"object\") {\n        for (let key in attrs) {\n          if (key.substring(0, 2) === \"on\") {\n            el.addEventListener(key.substring(2).toLowerCase(), attrs[key]);\n          } else {\n            el.setAttribute(key, attrs[key]);\n          }\n        }\n      }\n  \n      children.forEach(function (child) {\n        let node;\n  \n        if (child.constructor.name.includes(\"Element\")) {\n          node = child;\n        } else {\n          node = document.createTextNode(child);\n        }\n  \n        el.appendChild(node);\n      });\n  \n      return el;\n    }\n});\n\n\nmodule.exports = createEl;\n\n//# sourceURL=webpack://19_food-festival_pwa/./assets/js/domMethods.js?");
+
+/***/ }),
+
+/***/ "./assets/js/tickets.js":
+/*!******************************!*\
+  !*** ./assets/js/tickets.js ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n__webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n\n\n  // First image is hard coded in index.html\n  const carouselSlides = [\n    {\n      title: \"We travel all over the US\",\n      subtitle: \"Check out our schedule!\",\n      img: \"./assets/img/food-table.jpg\",\n      btnText: \"View Schedule\",\n      btnUrl: \"schedule.html\",\n    },\n    {\n      title: \"Our food is seriously the bomb!\",\n      subtitle: \"What are you waiting for?\",\n      img: \"./assets/img/grill.jpg\",\n      btnText: \"Purchase Tickets\",\n      btnUrl: \"tickets.html\",\n    },\n  ];\n\n  carouselSlides.forEach((slide, i) => {\n    $(\".carousel-inner\").append(`\n  <div class=\"carousel-item fullscreen-carousel\" style=\"background-image: url('${slide.img}')\">\n    <div class=\"d-flex h-100 align-items-center justify-content-center carousel-caption\">\n        <div class=\"container\">\n          <div class=\"row align-items-center justify-content-center\">\n              <h2 class=\"display-4 mb-2\">${slide.title}</h2>\n          </div>\n          <div class=\"row align-items-center justify-content-center\"> \n            <h3>${slide.subtitle}</h3>\n          </div>\n          <div class=\" mt-4 row align-items-center justify-content-center\"> \n            <a class=\"btn btn-primary\" href=\"${slide.btnUrl}\">\n                ${slide.btnText}\n            </a>\n          </div>\n        </div>\n    </div>\n  </div>`);\n  });\n\n//# sourceURL=webpack://19_food-festival_pwa/./assets/js/script.js?");
+eval("/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n__webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\nconst createEl = __webpack_require__(/*! ./domMethods */ \"./assets/js/domMethods.js\");\n\n$(document).ready(function() {\n    const purchaseBtn = document.getElementById(\"purchaseBtn\");\n    const purchaseEmail = document.getElementById(\"purchaseEmail\");\n    const modalEl = document.querySelector(\".modal-content\");\n    const modalBodyEl = document.querySelector(\".modal-body\");\n    const modalFooterEl = document.querySelector(\".modal-footer\");\n\n\n    function purchaseTicket () {\n\n      modalEl.removeChild(modalBodyEl)\n      modalEl.removeChild(modalFooterEl)\n\n      modalEl.append(createEl(\"div\", {class: \"modal-body\"},\n        createEl(\"h5\", {class: \"modal-title\"}, \n        `Thanks for requesting a ticket purchase! We will send an email to ${purchaseEmail.value} to complete the order form!`\n        ),\n      ))\n      \n    }\n    purchaseBtn.addEventListener(\"click\", purchaseTicket);\n});\n\n//# sourceURL=webpack://19_food-festival_pwa/./assets/js/tickets.js?");
 
 /***/ }),
 
@@ -122,7 +132,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./assets/js/script.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./assets/js/tickets.js");
 /******/ 	
 /******/ })()
 ;
