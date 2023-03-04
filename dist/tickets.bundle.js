@@ -13,9 +13,9 @@
 /*!*********************************!*\
   !*** ./assets/js/domMethods.js ***!
   \*********************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module) => {
 
-eval("/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n$(document).ready(function () {\n    function createEl(htmlString, attrs, ...children) {\n      if (typeof htmlString !== \"string\") {\n        throw Error(\"Argument 'htmlString' is required and must be a string\");\n      }\n  \n      const el = document.createElement(htmlString);\n  \n      if (typeof attrs === \"object\") {\n        for (let key in attrs) {\n          if (key.substring(0, 2) === \"on\") {\n            el.addEventListener(key.substring(2).toLowerCase(), attrs[key]);\n          } else {\n            el.setAttribute(key, attrs[key]);\n          }\n        }\n      }\n  \n      children.forEach(function (child) {\n        let node;\n  \n        if (child.constructor.name.includes(\"Element\")) {\n          node = child;\n        } else {\n          node = document.createTextNode(child);\n        }\n  \n        el.appendChild(node);\n      });\n  \n      return el;\n    }\n});\n\n\nmodule.exports = createEl;\n\n//# sourceURL=webpack://19_food-festival_pwa/./assets/js/domMethods.js?");
+eval("    function createEl(htmlString, attrs, ...children) {\n      if (typeof htmlString !== \"string\") {\n        throw Error(\"Argument 'htmlString' is required and must be a string\");\n      }\n  \n      const el = document.createElement(htmlString);\n  \n      if (typeof attrs === \"object\") {\n        for (let key in attrs) {\n          if (key.substring(0, 2) === \"on\") {\n            el.addEventListener(key.substring(2).toLowerCase(), attrs[key]);\n          } else {\n            el.setAttribute(key, attrs[key]);\n          }\n        }\n      }\n  \n      children.forEach(function (child) {\n        let node;\n  \n        if (child.constructor.name.includes(\"Element\")) {\n          node = child;\n        } else {\n          node = document.createTextNode(child);\n        }\n  \n        el.appendChild(node);\n      });\n  \n      return el;\n    }\n\n\nmodule.exports = createEl;\n\n//# sourceURL=webpack://19_food-festival_pwa/./assets/js/domMethods.js?");
 
 /***/ }),
 
